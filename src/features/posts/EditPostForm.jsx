@@ -1,21 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { postUpdated } from './postsSlice'
 
-export const EditPostForm = ({ match }) => {
-    const { postID } = match.params
+export const EditPostForm = () => {
+    const { postID } = useParams()
 
     const post = useSelector(state => 
         state.posts.find(post => post.id === postID)
     )
     
-    const [title, setTitle] = useState(post.title)
-    const [content, setContent] = useState(post.content)
+    const [title, setTitle] = useState('')
+    const [content, setContent] = useState('')
 
     const dispatch = useDispatch()
-    const history = useHistory()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (post) {
+            setTitle(post.title)
+            setContent(post.content)
+        }
+    }, [post])
 
     const onTitleChanged = e => setTitle(e.target.value)
     const onContentChanged = e => setContent(e.target.value)
@@ -23,9 +30,12 @@ export const EditPostForm = ({ match }) => {
     const onSavePostClicked = () => {
         if (title && content) {
             dispatch(postUpdated({ id: postID, title, content }))
-            history.push(`/posts/${postID}`)
+            navigate(`/posts/${postID}`)
         }
     }
+
+    console.log(postID)
+
 
     return (
         <section>
@@ -49,7 +59,7 @@ export const EditPostForm = ({ match }) => {
             />
           </form>
           <button type="button" onClick={onSavePostClicked}>
-            Save Post
+            Edit Post
           </button>
         </section>
       )
