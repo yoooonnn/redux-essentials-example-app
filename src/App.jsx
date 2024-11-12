@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { Navbar } from './components/Navbar'
 import { AddPostForm } from './features/posts/AddPostForm'
 import { PostsList } from './features/posts/PostsList'
+import { SinglePostPage } from './features/posts/SinglePostPage'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
               <PostsList />
             </>
           } />
+          <Route exact path="/posts/:postID" component={SinglePostPage} />
 
           {/* 잘못된 경로로 접근할 경우 리디렉션 */}
           <Route path="*" element={<Navigate to="/" />} />
