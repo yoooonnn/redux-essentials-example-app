@@ -32,6 +32,7 @@ const postsSlice = createSlice({ // createSlice generates posts reducer
                 existingPost.title = title
                 existingPost.content = content
             }
+
         }
     }
 })
