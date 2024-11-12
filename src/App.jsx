@@ -5,6 +5,9 @@ import { AddPostForm } from './features/posts/AddPostForm'
 import { PostsList } from './features/posts/PostsList'
 import { SinglePostPage } from './features/posts/SinglePostPage'
 
+import { EditPostForm } from './features/posts/EditPostForm'
+
+
 function App() {
   return (
     <Router>
@@ -18,7 +21,10 @@ function App() {
               <PostsList />
             </>
           } />
-          <Route exact path="/posts/:postID" component={SinglePostPage} />
+
+          <Route path="/posts/:postID" element={<SinglePostPage />} />
+          <Route path="/editPost/:postID" element={<EditPostForm />} />
+
 
           {/* 잘못된 경로로 접근할 경우 리디렉션 */}
           <Route path="*" element={<Navigate to="/" />} />
