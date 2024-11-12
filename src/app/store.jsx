@@ -7,6 +7,6 @@ import postsReducer from '../features/posts/postsSlice'
 // `postReducer` is being passed as a reducer field named `posts`
 export default configureStore({
     reducer: {
-        posts: postsReducer
+        posts: postsReducer,
     }
 })
