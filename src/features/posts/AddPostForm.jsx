@@ -22,7 +22,6 @@ export const AddPostForm = () => {
           content
         })
       )
-
       setTitle('')
       setContent('')
     }
