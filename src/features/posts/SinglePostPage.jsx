@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
+import { TimeAgo } from './TimeAgo'
 
 export const SinglePostPage = () => { 
     // URL 경로에서 추출한 매개변수를 객체로 제공
@@ -21,11 +22,12 @@ export const SinglePostPage = () => {
     }
 
     return (
+        
         <section>
             <article className="post">
                 <h2>{post.title}</h2>
                 <p className="post-content">{post.content}</p>
-
+                <p><TimeAgo timestamp={post.date} /></p>
                 <Link to={`/editPost/${post.id}`} className="button">
           Edit Post
         </Link>
